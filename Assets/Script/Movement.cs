@@ -5,10 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    const int LEFT = 0;
-    const int RIGHT = 1;
-    const int UP = 2;
-    const int DOWN = 3;
     const float gravityCE = -9.82f;
 
     CharacterController characterController;
@@ -19,7 +15,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float gravityMul = 3f;
     [SerializeField] private float speed = 7;
-    [SerializeField] private float jumpHeight = 2;
+    [SerializeField] private float jumpHeight = 5;
     [SerializeField] private GameObject leader;
 
     void Awake()
@@ -32,21 +28,21 @@ public class Movement : MonoBehaviour
     {
         applyGravity();
         moveObj();
-        characterController.Move(direction*speed*Time.deltaTime);
+        characterController.Move(direction*Time.deltaTime);
     }
 
     //Follower
-    int getDir()
+    float getDir()
     {
         float difference = transform.position.x - leader.transform.position.x;
 
         if(difference < -transform.localScale.x/4)
         {
-            return 1;
+            return 1*speed;
         }
         else if(difference > transform.localScale.x/4)
         {
-            return -1;
+            return -1*speed;
         }
         return 0;
     }
