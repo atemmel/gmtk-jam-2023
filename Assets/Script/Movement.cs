@@ -7,25 +7,39 @@ public class Movement : MonoBehaviour
 {
     const float gravityCE = -9.82f;
 
+	public GameObject lowerRay;
+	public GameObject upperRay;
+
 	private Animator animator;
 	private SpriteRenderer sprite;
 
-	bool lookLeft = false;
+	bool running = true;
 
-    CharacterController characterController;
+    Rigidbody2D body;
     float charVelocity;
 
-    Vector3 direction = Vector3.zero;
+	enum Direction {
+		Left,
+		Right,
+	};
+
+	Direction lookDir = Direction.Right;
+
+	enum LookAheadResult {
+		Continue,
+		Turn,
+		Jump,
+	};
+
+    Vector2 direction = new Vector2(1f, 0f);
     Vector2 input;
 
-    [SerializeField] private float gravityMul = 3f;
-    [SerializeField] private float speed = 7;
-    [SerializeField] private float jumpHeight = 5;
-    [SerializeField] private GameObject leader;
+    [SerializeField] private float speed = 1;
+    [SerializeField] private float jumpVelocity = 1;
 
     void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        body = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		sprite = GetComponent<SpriteRenderer>();
     }
@@ -33,70 +47,79 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        applyGravity();
+		if(!running) {
+			return;
+		}
+
         moveObj();
-		var delta = direction * speed * Time.deltaTime;
-        characterController.Move(delta);
-		animator.SetInteger("Direction", (int)direction.x);
-		sprite.flipX = lookLeft;
+
+		var dx = direction * speed;
+		var v = body.velocity;
+        body.velocity = new Vector2(dx.x, v.y);
+		animator.SetInteger("Direction", (int)dx.x);
+		sprite.flipX = lookDir == Direction.Left;
 	}
 
-    //Follower
-    float getDir()
-    {
-        float difference = transform.position.x - leader.transform.position.x;
+	LookAheadResult lookAhead() {
+		var d = direction;
+		var lowerRayOffset = lowerRay.transform.localPosition;
+		var upperRayOffset = upperRay.transform.localPosition;
+		lowerRayOffset.x *= d.x;
+		upperRayOffset.x *= d.x;
+		var lowerRayOrigin = transform.position + lowerRayOffset;
+		var upperRayOrigin = transform.position + upperRayOffset;
+		var lowerRayAngle = GetVectorFromAngle(lowerRay.transform.rotation.z);
+		var upperRayAngle = GetVectorFromAngle(upperRay.transform.rotation.z);
+		lowerRayAngle.x *= d.x;
+		upperRayAngle.x *= d.x;
+		var shortHit = Physics2D.Raycast(lowerRayOrigin, lowerRayAngle, lowerRay.transform.localScale.x);
+		var highHit = Physics2D.Raycast(upperRayOrigin, upperRayAngle, upperRay.transform.localScale.x);
+		Debug.DrawRay(lowerRayOrigin, lowerRayAngle * lowerRay.transform.localScale.x, Color.red);
+		Debug.DrawRay(upperRayOrigin, upperRayAngle * upperRay.transform.localScale.x, Color.red);
 
-        if(difference < -transform.localScale.x)
-        {
-			lookLeft = false;
-            return 1*speed;
-        }
-        else if(difference > transform.localScale.x)
-        {
-			lookLeft = true;
-            return -1*speed;
-        }
-        return 0;
-    }
+		if (shortHit.collider == null) {
+			//Debug.Log("A");
+			return LookAheadResult.Continue;
+		}
 
-    bool getJump()
-    {
-        if(transform.position.y + transform.localScale.y/2 < leader.transform.position.y)
-        {
-            return true;
-        }
-        return false;
-    }
+		if (highHit.collider == null) {
+			//Debug.Log("B");
+			return LookAheadResult.Jump;
+		}
+
+		//Debug.Log("C");
+		return LookAheadResult.Turn;
+	}
 
     void moveObj()
     {
-        direction.x = getDir();
-
-        if(getJump())
-        {
-            jump();
-        }
+		var result = lookAhead();
+		switch(result) {
+			case LookAheadResult.Continue:
+				break;
+			case LookAheadResult.Turn:
+				direction.x = -direction.x;
+				switch(lookDir) {
+					case Direction.Left:
+						lookDir = Direction.Right;
+						break;
+					case Direction.Right:
+						lookDir = Direction.Left;
+						break;
+				}
+				break;
+			case LookAheadResult.Jump:
+				jump();
+				break;
+		}
     }
 
     //Gravitas
     void jump()
     {
-        if(characterController.isGrounded)
-        {
-            charVelocity += jumpHeight;
-        }
-    }
-    void applyGravity()
-    {
-        if(characterController.isGrounded && charVelocity < 0)
-        {
-            charVelocity = -1.0f;
-        }
-        else
-        {
-            charVelocity += gravityCE * gravityMul * Time.deltaTime;
-        }
-        direction.y = charVelocity;
+		var v = body.velocity;
+		v.y = jumpVelocity;
+		body.velocity = v;
     }
 
     // User Controls
@@ -110,4 +133,10 @@ public class Movement : MonoBehaviour
     //         jump();
     //     }
     // }
+
+	static Vector3 GetVectorFromAngle(float angle) {
+		return new Vector3(
+				Mathf.Cos(angle), 
+				Mathf.Sin(angle));
+	}
 }
