@@ -46,12 +46,12 @@ public class Movement : MonoBehaviour
     {
         float difference = transform.position.x - leader.transform.position.x;
 
-        if(difference < -transform.localScale.x/4)
+        if(difference < -transform.localScale.x)
         {
 			lookLeft = false;
             return 1*speed;
         }
-        else if(difference > transform.localScale.x/4)
+        else if(difference > transform.localScale.x)
         {
 			lookLeft = true;
             return -1*speed;

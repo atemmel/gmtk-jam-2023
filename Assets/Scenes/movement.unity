@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityMul: 3
   speed: 7
-  jumpHeight: 5
+  jumpHeight: 2
   leader: {fileID: 120902125}
 --- !u!143 &1243323309
 CharacterController:

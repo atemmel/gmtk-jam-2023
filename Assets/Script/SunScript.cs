@@ -6,6 +6,7 @@ using System;
 public class SunScript : MonoBehaviour
 {
 	private Mesh mesh;
+	[SerializeField] private GameObject player;
 
     void Start()
     {
@@ -18,10 +19,10 @@ public class SunScript : MonoBehaviour
     {
 		Vector3 origin = transform.position;
 		var fov = 360f;
-		var rayCount = 180;
+		var rayCount = 5000;
 		var angle = 0f;
 		var angleIncrease = fov / rayCount;
-		var viewDistance = 5f;
+		var viewDistance = 30f;
 
 		var vertices = new Vector3[rayCount + 1 + 1];
 		var uv = new Vector2[vertices.Length];
@@ -38,7 +39,10 @@ public class SunScript : MonoBehaviour
 			var hit = Physics2D.Raycast(origin, direction, viewDistance);
 			if (hit.collider == null) {
 				vertex = origin + GetVectorFromAngle(angle) * viewDistance;
-			} else {
+			}else{
+				if (hit.collider.name == player.name){
+					Debug.Log("death to the vamp");
+				}
 				Debug.DrawRay(origin, direction * hit.distance, Color.red);
 				vertex = hit.point;
 			}
