@@ -11,6 +11,11 @@ public class Movement : MonoBehaviour
     const int DOWN = 3;
     const float gravityCE = -9.82f;
 
+	private Animator animator;
+	private SpriteRenderer sprite;
+
+	bool lookLeft = false;
+
     CharacterController characterController;
     float charVelocity;
 
@@ -25,6 +30,8 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+		animator = GetComponent<Animator>();
+		sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -32,18 +39,23 @@ public class Movement : MonoBehaviour
     {
         applyGravity();
         moveObj();
-        characterController.Move(direction*speed*Time.deltaTime);
-    }
+		var delta = direction * speed * Time.deltaTime;
+        characterController.Move(delta);
+		animator.SetInteger("Direction", (int)direction.x);
+		sprite.flipX = lookLeft;
+	}
 
     //Follower
     int getDir()
     {
         if(transform.position.x < leader.transform.position.x)
         {
+			lookLeft = false;
             return 1;
         }
         else if(transform.position.x > leader.transform.position.x)
         {
+			lookLeft = true;
             return -1;
         }
         return 0;
@@ -61,6 +73,7 @@ public class Movement : MonoBehaviour
     void moveObj()
     {
         direction.x = getDir();
+
         if(getJump())
         {
             jump();

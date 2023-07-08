@@ -85,11 +85,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: Velocity
-    m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: Velocity
+  - m_ConditionMode: 7
+    m_ConditionEvent: Direction
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1980092445584663709}
@@ -97,10 +94,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.24
   m_TransitionOffset: 0
   m_ExitTime: 0.7
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -122,7 +119,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 1
+  m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: abfddc5e349d0634998e83750e28a68e, type: 2}
@@ -154,10 +151,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 96a2751547620254eb40febf84d34d6a, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Velocity
   m_MirrorParameter: LookingLeft
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_TimeParameter: Velocity
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -173,14 +170,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: LookingLeft
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Velocity
-    m_Type: 1
+  - m_Name: Direction
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -212,7 +203,7 @@ AnimatorStateMachine:
     m_Position: {x: 220, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1980092445584663709}
-    m_Position: {x: 520, y: 260, z: 0}
+    m_Position: {x: 520, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6574111099126425615}
     m_Position: {x: 380, y: -20, z: 0}
@@ -224,6 +215,6 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 400, y: 140, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 740, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -1442355480807364742}
