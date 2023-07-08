@@ -14,9 +14,9 @@ public class SunScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-		var origin = gameObject.transform.position;
+		Vector3 origin = transform.position;
 		var fov = 90f;
 		var rayCount = 40;
 		var angle = 0f;
@@ -28,16 +28,19 @@ public class SunScript : MonoBehaviour
 		var triangles = new int[rayCount * 3];
 
 		vertices[0] = origin;
+		Debug.Log("Root is " + vertices[0].ToString());
 
 		var vertexIndex = 1;
 		var triangleIndex = 0;
 		for (int i = 0; i <= rayCount; i++) {
 			Vector3 vertex;
-			var hit = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance);
+			var direction = GetVectorFromAngle(angle);
+			var hit = Physics2D.Raycast(origin, direction, viewDistance);
 			if (hit.collider == null) {
 				vertex = origin + GetVectorFromAngle(angle) * viewDistance;
 			} else {
-				vertex = new Vector3(hit.point.x, hit.point.y);
+				Debug.DrawRay(origin, direction * hit.distance, Color.red);
+				vertex = new Vector3(hit.point.x, hit.point.y, 0f);
 			}
 			vertices[vertexIndex] = vertex;
 
