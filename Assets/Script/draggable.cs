@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class draggable : MonoBehaviour
 {
-    const float gravityCE = -9.82f;
-    
     bool grabbed = false;
-    CharacterController characterController;
-    float charVelocity;
 
-    Vector3 direction = Vector3.zero;
+    Rigidbody2D rigid;
 
-    [SerializeField] private float gravityMul = 3f;
+    float originalGrav = 0;
+    float interpolator = 0;
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        rigid = GetComponent<Rigidbody2D>();
+        originalGrav = rigid.gravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        applyGravity();
         checkIfGrab();
         moveGrab();
-        characterController.Move(direction*Time.deltaTime);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            grabbed = false;
+        }
     }
 
     //Mouse actions
@@ -47,6 +51,8 @@ public class draggable : MonoBehaviour
 
             if(mousePos.y < topY && mousePos.y > botY && mousePos.x < rightX && mousePos.x > leftX)
             {
+                originalGrav = rigid.gravityScale;
+                rigid.gravityScale = 0;
                 grabbed = true;
             }
         }
@@ -59,26 +65,23 @@ public class draggable : MonoBehaviour
             Debug.Log("it gets in");
             Vector3 newPos = getWorldMouse();
             newPos.z = 0;
-            characterController.Move(newPos - transform.position);
+            transform.position = Vector3.Lerp(transform.position, newPos, interpolator);
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+
+            if((transform.position - newPos) == Vector3.zero)
+            {
+                interpolator = 0;
+            }
+            if(interpolator < 1.0f)
+            {
+                interpolator += 0.25f * Time.deltaTime;
+            }
         }
         else
         {
             grabbed = false;
+            interpolator = 0;
+            rigid.gravityScale = originalGrav;
         }
-    }
-
-    //Gravity
-    void applyGravity()
-    {
-        if(grabbed){return;}
-        else if(characterController.isGrounded && charVelocity < 0)
-        {
-            charVelocity = -1.0f;
-        }
-        else
-        {
-            charVelocity += gravityCE * gravityMul * Time.deltaTime;
-        }
-        direction.y = charVelocity;
     }
 }
