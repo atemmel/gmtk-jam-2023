@@ -71,3 +71,19 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Sprites/Running/frame_00006.png
+Assets/Sprites/Running/frame_00005.png
+Assets/Sprites/Running/frame_00004.png
+Assets/Sprites/Running/frame_00003.png
+Assets/Sprites/Running/frame_00002.png
+Assets/Sprites/Running/frame_00001.png
+Assets/Sprites/Idle/frame_00010.png
+Assets/Sprites/Idle/frame_00009.png
+Assets/Sprites/Idle/frame_00008.png
+Assets/Sprites/Idle/frame_00007.png
+Assets/Sprites/Idle/frame_00006.png
+Assets/Sprites/Idle/frame_00005.png
+Assets/Sprites/Idle/frame_00004.png
+Assets/Sprites/Idle/frame_00003.png
+Assets/Sprites/Idle/frame_00002.png
+Assets/Sprites/Idle/frame_00001.png
