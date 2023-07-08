@@ -7,11 +7,14 @@ public class SunScript : MonoBehaviour
 {
 	private Mesh mesh;
 	[SerializeField] private GameObject player;
+	Movement movement;
+
 
     void Start()
     {
 		mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
+		movement = player.GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -41,7 +44,7 @@ public class SunScript : MonoBehaviour
 				vertex = origin + GetVectorFromAngle(angle) * viewDistance;
 			}else{
 				if (hit.collider.name == player.name){
-					Debug.Log("death to the vamp");
+					movement.Slay();
 				}
 				Debug.DrawRay(origin, direction * hit.distance, Color.red);
 				vertex = hit.point;

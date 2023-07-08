@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
 	private SpriteRenderer sprite;
 
 	bool running = true;
+	bool alive = true;
 
     Rigidbody2D body;
     float charVelocity;
@@ -121,6 +122,14 @@ public class Movement : MonoBehaviour
 		v.y = jumpVelocity;
 		body.velocity = v;
     }
+
+	public void Slay() {
+		if(!alive) return;
+		running = false;
+		alive = false;
+		body.velocity = Vector3.zero;
+		animator.SetBool("Dying", true);
+	}
 
     // User Controls
     // public void userControls(InputAction.CallbackContext context)
