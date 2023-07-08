@@ -38,11 +38,13 @@ public class Movement : MonoBehaviour
     //Follower
     int getDir()
     {
-        if(transform.position.x < leader.transform.position.x)
+        float difference = transform.position.x - leader.transform.position.x;
+
+        if(difference < -transform.localScale.x/4)
         {
             return 1;
         }
-        else if(transform.position.x > leader.transform.position.x)
+        else if(difference > transform.localScale.x/4)
         {
             return -1;
         }
