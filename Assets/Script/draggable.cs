@@ -74,7 +74,7 @@ public class draggable : MonoBehaviour
             }
             if(interpolator < 1.0f)
             {
-                interpolator += 0.25f * Time.deltaTime;
+                interpolator += 0.5f * Time.deltaTime;
             }
         }
         else
