@@ -17,8 +17,8 @@ public class SunScript : MonoBehaviour
     void Update()
     {
 		Vector3 origin = transform.position;
-		var fov = 90f;
-		var rayCount = 40;
+		var fov = 360f;
+		var rayCount = 180;
 		var angle = 0f;
 		var angleIncrease = fov / rayCount;
 		var viewDistance = 5f;
@@ -28,7 +28,7 @@ public class SunScript : MonoBehaviour
 		var triangles = new int[rayCount * 3];
 
 		vertices[0] = origin;
-		Debug.Log("Root is " + vertices[0].ToString());
+		// Debug.Log("Root is " + vertices[0].ToString());
 
 		var vertexIndex = 1;
 		var triangleIndex = 0;
@@ -40,9 +40,9 @@ public class SunScript : MonoBehaviour
 				vertex = origin + GetVectorFromAngle(angle) * viewDistance;
 			} else {
 				Debug.DrawRay(origin, direction * hit.distance, Color.red);
-				vertex = new Vector3(hit.point.x, hit.point.y, 0f);
+				vertex = hit.point;
 			}
-			vertices[vertexIndex] = vertex;
+			vertices[vertexIndex] = vertex - origin;
 
 			if (i > 0) {
 				triangles[triangleIndex + 0] = 0;
