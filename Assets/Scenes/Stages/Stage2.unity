@@ -1524,7 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89fbbf6ab3484c45bc6837db2746be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newscene: Stage1
+  newscene: Stage4
 --- !u!1 &1696067327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8964335000775695116, guid: f8de052069b373d48b3d60744931c6d8, type: 3}
