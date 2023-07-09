@@ -8,12 +8,15 @@ public class Movement : MonoBehaviour
 {
     const float gravityCE = -9.82f;
 
+
+	[SerializeField] AudioClip[] sounds; 
 	public GameObject lowerRay;
 	public GameObject upperRay;
 	public ParticleSystem deathSplat;
 
 	private Animator animator;
 	private SpriteRenderer sprite;
+	private AudioSource aud;
 
 	bool running = false;
 	bool alive = true;
@@ -47,6 +50,7 @@ public class Movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		sprite = GetComponent<SpriteRenderer>();
+		aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,11 @@ public class Movement : MonoBehaviour
 				return;
 			}
 
+			if(!aud.isPlaying)
+			{
+				aud.clip = sounds[0];
+				aud.Play();
+			}
 			moveObj();
 
 			var dx = direction * speed;
@@ -69,6 +78,11 @@ public class Movement : MonoBehaviour
 			sprite.flipX = lookDir == Direction.Left;
 		}
 		else{
+			if(!aud.isPlaying)
+			{
+				aud.clip = sounds[1];
+				aud.Play();
+			}
 			if(Time.time - timeOfDeath > 3)
 			{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -81,6 +95,7 @@ public class Movement : MonoBehaviour
 		if(Input.GetKeyDown("space")){
 			running = !running;
 			animator.SetBool("running", running);
+			if(!running){aud.Stop();}
 		}
 	}
 
@@ -141,6 +156,7 @@ public class Movement : MonoBehaviour
     //Gravitas
     void jump()
     {
+		aud.Stop();
 		var v = body.velocity;
 		v.y = jumpVelocity;
 		body.velocity = v;
@@ -148,6 +164,7 @@ public class Movement : MonoBehaviour
 
 	public void Slay() {
 		if(!alive) return;
+		aud.Stop();
 		running = false;
 		alive = false;
 		body.velocity = Vector3.zero;
