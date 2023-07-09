@@ -6,7 +6,10 @@ public class draggable : MonoBehaviour
 {
     bool grabbed = false;
 
+    [SerializeField] bool isSun = false;
+	[SerializeField] AudioClip[] sounds; 
     Rigidbody2D rigid;
+    AudioSource aud;
 
     float originalGrav = 0;
     float interpolator = 0;
@@ -15,6 +18,7 @@ public class draggable : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         originalGrav = rigid.gravityScale;
+        aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,6 +58,14 @@ public class draggable : MonoBehaviour
                 originalGrav = rigid.gravityScale;
                 rigid.gravityScale = 0;
                 grabbed = true;
+                if(isSun){
+                    var rand = Random.Range(1, 100);
+                    if(rand < 20)
+                    {
+                        aud.clip = sounds[rand%2];
+                        aud.Play();
+                    }
+                }
             }
         }
     }
