@@ -36,14 +36,14 @@ public class Movement : MonoBehaviour
 	enum LookAheadResult {
 		Continue,
 		Turn,
-		Jump,
+		// Jump,
 	};
 
     Vector2 direction = new Vector2(1f, 0f);
     Vector2 input;
 
     [SerializeField] private float speed = 1;
-    [SerializeField] private float jumpVelocity = 1;
+    // [SerializeField] private float jumpVelocity = 1;
 
     void Awake()
     {
@@ -123,10 +123,10 @@ public class Movement : MonoBehaviour
 			return LookAheadResult.Continue;
 		}
 
-		if (highHit.collider == null) {
-			//Debug.Log("B");
-			return LookAheadResult.Jump;
-		}
+		// if (highHit.collider == null) {
+		// 	//Debug.Log("B");
+		// 	return LookAheadResult.Jump;
+		// }
 
 		//Debug.Log("C");
 		return LookAheadResult.Turn;

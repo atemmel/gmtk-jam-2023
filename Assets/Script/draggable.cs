@@ -8,6 +8,8 @@ public class draggable : MonoBehaviour
 
     [SerializeField] bool isSun = false;
 	[SerializeField] AudioClip[] sounds; 
+    [SerializeField] float height = 1;
+    [SerializeField] float width = 1;
     Rigidbody2D rigid;
     AudioSource aud;
 
@@ -48,10 +50,10 @@ public class draggable : MonoBehaviour
         {
             Vector3 mousePos = getWorldMouse();
             Debug.Log(mousePos);
-            float topY = transform.position.y + transform.localScale.y/2;
-            float botY = transform.position.y - transform.localScale.y/2;
-            float rightX = transform.position.x + transform.localScale.x/2;
-            float leftX = transform.position.x - transform.localScale.x/2;
+            float topY = transform.position.y + height/2;
+            float botY = transform.position.y - height/2;
+            float rightX = transform.position.x + width/2;
+            float leftX = transform.position.x - width/2;
 
             if(mousePos.y < topY && mousePos.y > botY && mousePos.x < rightX && mousePos.x > leftX)
             {
