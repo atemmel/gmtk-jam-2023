@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1559400157955062509}
   m_Layer: 0
   m_Name: Princess
-  m_TagString: Untagged
+  m_TagString: Princess
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerRay: {fileID: 6447077568921440574}
   upperRay: {fileID: 1214270808909807002}
+  deathSplat: {fileID: 0}
   speed: 2
   jumpVelocity: 4
 --- !u!212 &6875925164628763530
