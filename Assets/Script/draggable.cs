@@ -62,7 +62,6 @@ public class draggable : MonoBehaviour
     {
         if(grabbed && Input.GetMouseButton(0))
         {
-            Debug.Log("it gets in");
             Vector3 newPos = getWorldMouse();
             newPos.z = 0;
             transform.position = Vector3.Lerp(transform.position, newPos, interpolator);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Movement : MonoBehaviour
 
 	bool running = false;
 	bool alive = true;
+
+	float timeOfDeath = 0;
 
     Rigidbody2D body;
     float charVelocity;
@@ -49,24 +52,35 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		sprintToggle();
-		if(!running) {
-			return;
+		if(alive)
+		{
+			sprintToggle();
+			if(!running) {
+				return;
+			}
+
+			moveObj();
+
+			var dx = direction * speed;
+			var v = body.velocity;
+			body.velocity = new Vector2(dx.x, v.y);
+			animator.SetInteger("Direction", (int)dx.x);
+			animator.SetFloat("Aer", v.y);
+			sprite.flipX = lookDir == Direction.Left;
 		}
-
-        moveObj();
-
-		var dx = direction * speed;
-		var v = body.velocity;
-        body.velocity = new Vector2(dx.x, v.y);
-		animator.SetInteger("Direction", (int)dx.x);
-		sprite.flipX = lookDir == Direction.Left;
+		else{
+			if(Time.time - timeOfDeath > 3)
+			{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
+		}
 	}
 
 	void sprintToggle()
 	{
 		if(Input.GetKeyDown("space")){
 			running = !running;
+			animator.SetBool("running", running);
 		}
 	}
 
@@ -87,7 +101,7 @@ public class Movement : MonoBehaviour
 		Debug.DrawRay(lowerRayOrigin, lowerRayAngle * lowerRay.transform.localScale.x, Color.red);
 		Debug.DrawRay(upperRayOrigin, upperRayAngle * upperRay.transform.localScale.x, Color.red);
 
-		if (shortHit.collider == null) {
+		if (shortHit.collider == null || shortHit.collider.tag == "Exit") {
 			//Debug.Log("A");
 			return LookAheadResult.Continue;
 		}
@@ -139,6 +153,7 @@ public class Movement : MonoBehaviour
 		body.velocity = Vector3.zero;
 		animator.SetBool("Dying", true);
 		StartCoroutine(splat());
+		timeOfDeath = Time.time;
 	}
 
 	IEnumerator splat()

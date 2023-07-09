@@ -22,16 +22,16 @@ public class SunScript : MonoBehaviour
     {
 		Vector3 origin = transform.position;
 		var fov = 360f;
-		var rayCount = 5000;
+		var rayCount = 500;
 		var angle = 0f;
 		var angleIncrease = fov / rayCount;
-		var viewDistance = 30f;
+		var viewDistance = 5f;
 
 		var vertices = new Vector3[rayCount + 1 + 1];
 		var uv = new Vector2[vertices.Length];
 		var triangles = new int[rayCount * 3];
 
-		vertices[0] = origin;
+		vertices[0] = Vector3.zero;
 		// Debug.Log("Root is " + vertices[0].ToString());
 
 		var vertexIndex = 1;
@@ -49,7 +49,7 @@ public class SunScript : MonoBehaviour
 				Debug.DrawRay(origin, direction * hit.distance, Color.red);
 				vertex = hit.point;
 			}
-			vertices[vertexIndex] = vertex - origin;
+			vertices[vertexIndex] = transform.worldToLocalMatrix * (vertex - origin);
 
 			if (i > 0) {
 				triangles[triangleIndex + 0] = 0;
