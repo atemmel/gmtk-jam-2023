@@ -58,6 +58,9 @@ public class Movement : MonoBehaviour
     {
 		if(alive)
 		{
+			bool falling = body.velocity.y < -0.0f;
+			animator.SetBool("falling", falling);
+			Debug.Log("Gaming:" + falling);
 			sprintToggle();
 			if(!running) {
 				return;
@@ -74,7 +77,6 @@ public class Movement : MonoBehaviour
 			var v = body.velocity;
 			body.velocity = new Vector2(dx.x, v.y);
 			animator.SetInteger("Direction", (int)dx.x);
-			animator.SetFloat("Aer", v.y);
 			sprite.flipX = lookDir == Direction.Left;
 		}
 		else{
