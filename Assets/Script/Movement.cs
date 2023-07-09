@@ -122,10 +122,12 @@ public class Movement : MonoBehaviour
 			return LookAheadResult.Continue;
 		}
 
+		/*
 		if (highHit.collider == null) {
 			//Debug.Log("B");
 			return LookAheadResult.Jump;
 		}
+		*/
 
 		//Debug.Log("C");
 		return LookAheadResult.Turn;
