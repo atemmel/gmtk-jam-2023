@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Exit
   - Princess
+  - Sun
   layers:
   - Default
   - TransparentFX
