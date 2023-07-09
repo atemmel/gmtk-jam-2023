@@ -18,6 +18,10 @@ public class Movement : MonoBehaviour
 	private SpriteRenderer sprite;
 	private AudioSource aud;
 
+	public AudioSource[] dying;
+	public AudioSource[] startMove;
+	public AudioSource[] stopMove;
+
 	bool running = false;
 	bool alive = true;
 
@@ -36,14 +40,14 @@ public class Movement : MonoBehaviour
 	enum LookAheadResult {
 		Continue,
 		Turn,
-		// Jump,
+		Jump,
 	};
 
     Vector2 direction = new Vector2(1f, 0f);
     Vector2 input;
 
     [SerializeField] private float speed = 1;
-    // [SerializeField] private float jumpVelocity = 1;
+    [SerializeField] private float jumpVelocity = 1;
 
     void Awake()
     {
@@ -97,6 +101,11 @@ public class Movement : MonoBehaviour
 			running = !running;
 			animator.SetBool("running", running);
 			if(!running){aud.Stop();}
+			if(running) {
+				playSource(startMove);
+			} else {
+				playSource(stopMove);
+			}
 		}
 	}
 
@@ -171,6 +180,7 @@ public class Movement : MonoBehaviour
 		body.velocity = Vector3.zero;
 		animator.SetBool("Dying", true);
 		animator.SetBool("falling", false);
+		playSource(dying);
 		StartCoroutine(splat());
 		timeOfDeath = Time.time;
 	}
@@ -198,6 +208,26 @@ public class Movement : MonoBehaviour
 		return new Vector3(
 				Mathf.Cos(angle), 
 				Mathf.Sin(angle));
+	}
+
+	void playSource(AudioSource[] sources) {
+		var source = randomSource(sources);
+		if(source == null) {
+			return;
+		}
+		source.Play();
+	}
+
+	AudioSource randomSource(AudioSource[] sources) {
+		if(sources.Length < 1) {
+			return null;
+		}
+		var maybe = Random.Range(0f, 9f);
+		Debug.Log(maybe);
+		if(maybe >= 1) {
+			return null;
+		}
+		return sources[Random.Range(0, sources.Length)];
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
