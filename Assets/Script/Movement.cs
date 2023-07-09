@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 	private Animator animator;
 	private SpriteRenderer sprite;
 
-	bool running = true;
+	bool running = false;
 	bool alive = true;
 
     Rigidbody2D body;
@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		sprintToggle();
 		if(!running) {
 			return;
 		}
@@ -60,6 +61,13 @@ public class Movement : MonoBehaviour
         body.velocity = new Vector2(dx.x, v.y);
 		animator.SetInteger("Direction", (int)dx.x);
 		sprite.flipX = lookDir == Direction.Left;
+	}
+
+	void sprintToggle()
+	{
+		if(Input.GetKeyDown("space")){
+			running = !running;
+		}
 	}
 
 	LookAheadResult lookAhead() {
