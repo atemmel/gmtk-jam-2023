@@ -60,7 +60,6 @@ public class Movement : MonoBehaviour
 		{
 			bool falling = body.velocity.y < -0.0f;
 			animator.SetBool("falling", falling);
-			Debug.Log("Gaming:" + falling);
 			sprintToggle();
 			if(!running) {
 				return;
@@ -171,6 +170,7 @@ public class Movement : MonoBehaviour
 		alive = false;
 		body.velocity = Vector3.zero;
 		animator.SetBool("Dying", true);
+		animator.SetBool("falling", false);
 		StartCoroutine(splat());
 		timeOfDeath = Time.time;
 	}
@@ -199,4 +199,23 @@ public class Movement : MonoBehaviour
 				Mathf.Cos(angle), 
 				Mathf.Sin(angle));
 	}
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+		/*
+		var contact = collision.GetContact(0);
+		var contactPoint = contact.point;
+		var ownCenter = contact.otherCollider.bounds.center;
+		Debug.Log(body.velocity.y);
+		if(contactPoint.y < ownCenter.y && body.velocity.y < -7f) {
+			Debug.Log("Ska dö");
+		} else {
+			Debug.Log("Ska inte dö");
+		}
+		*/
+		Debug.Log(collision.relativeVelocity.ToString());
+		if(collision.relativeVelocity.y > 6f) {
+			Slay();
+		}
+    }
 }
