@@ -8,6 +8,7 @@ TagManager:
   - Exit
   - Princess
   - Sun
+  - Movable
   layers:
   - Default
   - TransparentFX

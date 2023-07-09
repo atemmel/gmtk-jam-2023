@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -207,6 +211,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -362,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -434,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -508,6 +524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -580,6 +600,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -668,6 +692,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -803,6 +831,10 @@ PrefabInstance:
       propertyPath: tag
       value: Princess
       objectReference: {fileID: 0}
+    - target: {fileID: 4337548961550111838, guid: d0daa49a20ce7234db8d294cc7aaabc5, type: 3}
+      propertyPath: playOnce
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4400700515843515410, guid: d0daa49a20ce7234db8d294cc7aaabc5, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -871,6 +903,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -949,6 +985,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -1119,6 +1159,10 @@ PrefabInstance:
     - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Name
       value: Wall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706411167656158311, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 4342065589779906957, guid: 03d02de09753b904ebd9968b5d63c2a2, type: 3}
       propertyPath: m_Color.a
@@ -1622,6 +1666,10 @@ PrefabInstance:
     - target: {fileID: 4337548961550111838, guid: d0daa49a20ce7234db8d294cc7aaabc5, type: 3}
       propertyPath: tag
       value: Sun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337548961550111838, guid: d0daa49a20ce7234db8d294cc7aaabc5, type: 3}
+      propertyPath: playOnce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4400700515843515410, guid: d0daa49a20ce7234db8d294cc7aaabc5, type: 3}
       propertyPath: m_audioClip

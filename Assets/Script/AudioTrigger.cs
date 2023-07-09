@@ -7,6 +7,8 @@ public class AudioTrigger : MonoBehaviour
     AudioSource aud;
     Collider2D coll;
     [SerializeField] string tag;
+    [SerializeField] bool playOnce;
+    bool played = false;
 
     private void Awake()
     {
@@ -16,9 +18,12 @@ public class AudioTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == tag)
+        if(coll.gameObject.tag == tag && !played)
         {
             aud.Play();
+            if(playOnce){
+                played = true;
+            }
         }
     }
 }
