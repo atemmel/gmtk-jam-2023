@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
 
 	public GameObject lowerRay;
 	public GameObject upperRay;
+	public ParticleSystem deathSplat;
 
 	private Animator animator;
 	private SpriteRenderer sprite;
@@ -129,7 +130,15 @@ public class Movement : MonoBehaviour
 		alive = false;
 		body.velocity = Vector3.zero;
 		animator.SetBool("Dying", true);
+		StartCoroutine(splat());
 	}
+
+	IEnumerator splat()
+    {
+        yield return new WaitForSeconds(1);
+		var obj = Instantiate(deathSplat, transform);
+		Destroy(obj, 60);
+    }
 
     // User Controls
     // public void userControls(InputAction.CallbackContext context)
