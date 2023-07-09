@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1841209528141611298}
   - component: {fileID: 6652142332836777798}
   - component: {fileID: 5829408874906676906}
+  - component: {fileID: 3358266528193396922}
   m_Layer: 0
   m_Name: Lamp_helvetet
   m_TagString: Untagged
@@ -170,6 +171,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ace3eaa84cd10134580286fb1eeb3d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3358266528193396922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685373387551362130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d1de11db53e0447b5ef5d0656c4954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1059604046777977366
